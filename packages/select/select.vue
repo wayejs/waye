@@ -1,0 +1,141 @@
+<template>
+  <el-select
+    v-model="currentValue"
+    v-bind="$attrs"
+    :filterable="filterable">
+    <el-option
+      :key="item.value"
+      :value="item.value"
+      :disabled="item.disabled"
+      :label="item.label"
+      v-for="item in list">
+    </el-option>
+  </el-select>
+</template>
+
+<script>
+export default {
+  name: 'WySelect',
+  inheritAttrs: false,
+  model: {
+    prop: 'selected',
+    event: 'selected-change'
+  },
+  props: {
+    // 下拉列表请求方法
+    fetch: Function,
+    // 静态数据
+    data: Array,
+    defaultFirst: Boolean,
+    filterable: {
+      type: Boolean,
+      default: true
+    },
+    // 值 key , 以后弃用
+    value: {
+      type: String,
+      default: 'value'
+    },
+    // 文本 key，以后弃用
+    label: {
+      type: String,
+      default: 'label'
+    },
+    valueKey: {
+      type: String,
+      default: 'value'
+    },
+    labelKey: {
+      type: String,
+      default: 'label'
+    },
+    // 处理数据, value, key 设置失效
+    postData: Function,
+    disabledKey: {
+      type: String,
+      default: 'disabled'
+    },
+    hasAll: Boolean,
+    allText: {
+      type: String,
+      default: '全部'
+    },
+    // 当前已选择的，用 v-model 方式定义即可
+    selected: {
+      type: [Number, String, Array],
+      default: ''
+    }
+  },
+
+  watch: {
+    data (val) {
+      if (val) {
+        this.transformData(val)
+      }
+    },
+    selected (val) {
+      this.currentValue = val
+    },
+    currentValue (val) {
+      this.$emit('selected-change', val)
+      if (val) {
+        this.list.forEach(item => {
+          if (val === item.value) {
+            this.$emit('change', item)
+            return false
+          }
+        })
+      }
+    }
+  },
+  data () {
+    return {
+      list: [],
+      currentValue: this.selected || ''
+    }
+  },
+  created () {
+    let { value, label, disabled } = this
+    if ((value && value !== 'value') || (label && label !== 'label')) {
+      console.warn('[QlSelect] 参数 value 和 label 将会弃用，请用 valueKey, labelKey')
+    }
+    if (disabled && disabled !== 'disabled') {
+      console.warn('[QlSelect] 参数 disabled 将会弃用，请用 disabledKey')
+    }
+  },
+  mounted () {
+    if (typeof this.fetch === 'function') {
+      this.fetch().then(data => {
+        this.transformData(data)
+      })
+    } else if (Array.isArray(this.data)) {
+      this.transformData(this.data)
+    }
+  },
+  methods: {
+    transformData (data) {
+      if (typeof this.postData === 'function') {
+        data = this.postData(data)
+      } else {
+        let valueKey = this.value || this.valueKey
+        let labelKey = this.label || this.labelKey
+        data.forEach(item => {
+          item.value = item[valueKey]
+          item.label = item[labelKey]
+          item.disabled = item[this.disabledKey] || false
+        })
+      }
+
+      if (this.hasAll) {
+        data = [{ label: this.allText, value: '' }].concat(data)
+      }
+      this.list = data
+      if (this.defaultFirst && this.list.length) {
+        this.$nextTick(() => {
+          this.currentValue = this.list[0].value
+        })
+      }
+    }
+  }
+}
+</script>

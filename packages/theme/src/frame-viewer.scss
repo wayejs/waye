@@ -1,0 +1,51 @@
+@import "mixins/mixins.scss";
+@import "mixins/utils.scss";
+@import "common/var.scss";
+$top-height: 40px;
+@include b(frame-viewer){
+  .el-dialog {
+    border: 0;
+    &__body {
+      padding: 0 !important;
+    }
+  }
+  @include e(header) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: $top-height;
+    line-height: $top-height;
+    text-align: center;
+    background: #545c64;
+    color: #fff;
+    width: 100%;
+    @include utils-clearfix();
+    .el-button {
+      float: left;
+      color: #fff;
+    }
+    h3 {
+      color: #fff;
+    }
+  }
+  @include e(close) {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.6);
+    transition: all 0.3s;
+    font-size: 16px;
+    &:hover {
+      color: rgba(255, 255, 255, 1);
+    }
+  }
+  @include e(body) {
+    position: absolute;
+    top: $top-height;
+    left: 0;
+    height: calc(100% - #{$top-height});
+    width: 100%;
+    background: #fff;
+  }
+}

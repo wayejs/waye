@@ -1,0 +1,80 @@
+{
+  "name": "waye",
+  "version": "0.1.0",
+  "description": "waye base component",
+  "main": "lib/waye.common.js",
+  "files": [
+    "lib",
+    "src",
+    "packages"
+  ],
+  "scripts": {
+    "dev": "vue-cli-service serve",
+    "lerna": "./node_modules/.bin/lerna publish",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "clean": "rimraf lib && rimraf packages/*/lib",
+    "lint": "eslint src/**/* test/**/* packages/**/* build/**/* --fix",
+    "dist": "webpack --config build/webpack.conf.js && webpack --config build/webpack.common.js && webpack --config build/webpack.component.js",
+    "build:utils": "babel src --out-dir lib --ignore src/index.js",
+    "build:theme": "node build/bin/gen-cssfile && gulp build --gulpfile packages/theme/gulpfile.js && cp-cli packages/theme/lib lib/theme",
+    "waye:all": "webpack --config build/webpack.common.js",
+    "waye:comp": "webpack --config build/webpack.component.js",
+    "waye:umd": "webpack --config build/webpack.conf.js",
+    "publish": "npm publish --registry=http://registry.npmjs.org --access=public",
+    "test": "test"
+  },
+  "dependencies": {
+    "element-ui": "^2.10.1",
+    "moment": "^2.24.0",
+    "@waye/area-data": "^5.1.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.9.0",
+    "@vue/cli-plugin-eslint": "^3.9.0",
+    "@vue/cli-plugin-unit-jest": "^3.8.0",
+    "@vue/component-compiler-utils": "^2.6.0",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "@vue/test-utils": "^1.0.0-beta.29",
+    "babel-cli": "^6.26.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.8.0",
+    "cp-cli": "^1.0.2",
+    "cross-env": "^5.2.0",
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-sass": "^4.0.2",
+    "lerna": "^3.15.0",
+    "node-sass": "^4.11.0",
+    "progress-bar-webpack-plugin": "^1.11.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^2.1.1",
+    "uppercamelcase": "^1.1.0",
+    "url-loader": "^1.0.1",
+    "vue-loader": "^15.7.0",
+    "vue-template-compiler": "^2.5.21",
+    "vuepress": "^1.0.2",
+    "webpack": "^4.14.0",
+    "webpack-cli": "^3.3.6",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wayejs/waye.git"
+  },
+  "keywords": [
+    "element-ui",
+    "waye",
+    "vue"
+  ],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "author": "lynzz",
+  "license": "MIT"
+}

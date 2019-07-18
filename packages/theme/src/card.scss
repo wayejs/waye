@@ -1,0 +1,25 @@
+@import "common/var.scss";
+@import "mixins/mixins.scss";
+@include b('card') {
+  @include e('body') {
+    padding: 10px;
+  }
+  @include e('actions') {
+    border-top: 1px solid #e8e8e8;
+    background: #fafafa;
+    display: flex;
+  }
+  @include e('actions-item') {
+    text-align: center;
+    margin: 6px 0;
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 12px;
+    cursor: pointer;
+    &:hover {
+      color: $--link-hover-color;
+    }
+    &:not(:last-child) {
+      border-right: 1px solid #e8e8e8;
+    }
+  }
+}

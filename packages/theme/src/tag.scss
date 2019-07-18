@@ -1,0 +1,12 @@
+@import "mixins/mixins.scss";
+
+@include b(tag) {
+  cursor: pointer;
+  display: inline-block;
+  @include e(title) {
+    margin-right: 16px;
+  }
+  & > span {
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,7 @@
+.el-button +.wy-button-confirm,
+.wy-button-confirm +.wy-button-confirm {
+  margin-left: 6px;
+}
+.wy-button-confirm {
+  display: inline-block;
+}

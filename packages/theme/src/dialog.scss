@@ -1,0 +1,30 @@
+@import "mixins/mixins.scss";
+@import "common/var.scss";
+@include b(dialog){
+  .el-dialog {
+    &.is-fullscreen {
+      width: 100% !important;
+      left: 0!important;
+      top: 0!important;
+    }
+    &.is-draggable {
+      .el-dialog__header {
+        user-select: none;
+        cursor: move;
+      }
+    }
+  }
+  @include e(toolbar) {
+    position: absolute;
+    top: 17px;
+    right: 40px;
+    cursor: pointer;
+
+    .wyicon {
+      color: #999;
+      &:hover {
+        color: $--link-hover-color;
+      }
+    }
+  }
+}

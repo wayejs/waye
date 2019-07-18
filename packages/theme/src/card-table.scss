@@ -1,0 +1,15 @@
+@import "mixins/mixins.scss";
+@include b(card-table){
+  position: relative;
+  .el-card__body {
+    padding: 0;
+    .wy-table {
+      border: 0;
+    }
+  }
+  @include e(action) {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+}

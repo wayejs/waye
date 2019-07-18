@@ -1,0 +1,50 @@
+body.el-popup-parent--hidden {
+  padding: 0!important;
+}
+.el-table {
+  th.is-leaf{
+    background: #81c9e0;
+    color:white;
+  }
+  tr:hover{
+    background: #d0dcee;
+  }
+}
+.el-tooltip__popper {
+  max-width: 400px;
+}
+.wy-table {
+  border-color: #e3e8eb;
+  thead tr {
+    th {
+      background: #d9edf7;
+      color: #707070;
+    }
+  }
+  &--border {
+    & th, td {
+      border-color: #ddd;
+    }
+  }
+  td, th {
+    padding: 8px 10px;
+  }
+  td {
+    &.text-right {
+      text-align: right;
+    }
+  }
+  tr.is-info {
+    th {
+      background: #f3fbfc;
+      color: #333;
+      font-weight: 400;
+    }
+  }
+  th {
+    &.is-primary {
+      background: #337ab7;
+      color: #fff;
+    }
+  }
+}

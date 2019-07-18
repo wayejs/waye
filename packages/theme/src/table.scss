@@ -1,0 +1,86 @@
+@import "common/var.scss";
+@import "mixins/mixins.scss";
+@import 'mixins/utils.scss';
+$border-gray-color: #c8c8c8;
+$background-gray-color: #d3d3d3;
+@include b(table) {
+  border-color: $--border-color-lighter;
+  table-layout: fixed;
+  width: 100%;
+  & th, td {
+    padding: 3px 8px;
+    min-width: 0;
+    box-sizing: border-box;
+    vertical-align: middle;
+    position: relative;
+    .has-tootips {
+      @include utils-ellipsis;
+    }
+  }
+  & th{
+    padding:6px 8px;
+  }
+
+  @include m(border) {
+    & th, td {
+      border: 1px solid $--border-color-lighter;
+    }
+
+    @include when(gray) {
+      & th, td {
+        border-color: $border-gray-color;
+      }
+    }
+
+    @include when(dark) {
+      & th, td {
+        color:white;
+        border-color: rgba(255,255,255,0.3);
+        background-color:rgba(100,100,100,0.8);
+        border-bottom:1px solid rgba(255,255,255,0.3);
+      }
+    }
+  }
+  @include m(center) {
+    & th, td {
+      text-align: center;
+    }
+  }
+  @include m(compact) {
+    & td {
+      padding: 0;
+    }
+  }
+  @include when(gray) {
+    border-color: $border-gray-color;
+    & th, td {
+      color: #333;
+    }
+
+    & th {
+      background: $background-gray-color;
+    }
+  }
+  @include when(fixed-cell) {
+    & th, td {
+      padding: 0;
+      height: 40px;
+      .cell {
+        padding-left: 8px;
+        padding-right: 8px;
+        @include utils-ellipsis();
+        color: $--table-text-color;
+        word-break: initial;
+      }
+    }
+    & th .cell {
+      color: #ccc;
+    }
+  }
+  & td {
+    color: $--table-text-color;
+  }
+  & th {
+    color: #81d4fa;
+  }
+}

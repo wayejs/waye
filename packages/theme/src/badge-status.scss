@@ -1,0 +1,33 @@
+@import "common/var.scss";
+@import "mixins/mixins.scss";
+@include b(badge-status) {
+  vertical-align: baseline;
+  line-height: inherit;
+  display: inline-block;
+  @include e(dot) {
+    width: 6px;
+    height: 6px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    border-radius: 50%;
+    top: -1px;
+    box-sizing: border-box;
+    @include when(primary) {
+      background-color: $--color-primary;
+    }
+    @include when(info) {
+      background-color: $--color-info;
+    }
+    @include when(success) {
+      background-color: $--color-success;
+    }
+    @include when(danger) {
+      background-color: $--color-danger;
+    }
+  }
+  @include e(text) {
+    margin-left: 8px;
+    color: rgba(0, 0, 0, 0.65);
+  }
+}

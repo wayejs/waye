@@ -1,0 +1,8 @@
+{
+  "name": "@waye/date-picker",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "author": "lynzz",
+  "license": "ISC"
+}

@@ -1,0 +1,57 @@
+@import "mixins/mixins.scss";
+@import "mixins/utils.scss";
+@import "common/var.scss";
+
+@include b(search) {
+  .el-table {
+    box-shadow: $--box-shadow-light-1;
+  }
+  @include m(simple) {
+    .el-form-item {
+      margin-bottom: 0;
+    }
+    @include when(right) {
+      text-align: right;
+    }
+  }
+
+  @include e(header) {
+    background: #c8e5f1;
+    padding: 10px;
+    border-radius: 3px;
+    @include utils-clearfix();
+  }
+
+  @include e(btns) {
+    text-align: right;
+  }
+
+  @include e(tools-top) {
+    &:empty {
+      display: none;
+    }
+    @include utils-clearfix;
+    @include when(right) {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    @include when(left) {
+      padding: 6px 0;
+    }
+  }
+
+  @include e(tools-bottom) {
+    float: left;
+  }
+
+  @include e(body) {
+    margin-top: 10px;
+  }
+
+  @include e(footer){
+    text-align: center;
+    padding: 10px 0;
+    @include utils-clearfix;
+  }
+}
