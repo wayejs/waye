@@ -4,7 +4,7 @@
   "card": "./packages/card/index.js",
   "card-list": "./packages/card-list/index.js",
   "card-table": "./packages/card-table/index.js",
-  "circle": "./packages/card/index.js",
+  "circle": "./packages/circle/index.js",
   "date-picker": "./packages/date-picker/index.js",
   "dialog": "./packages/dialog/index.js",
   "form": "./packages/form/index.js",
