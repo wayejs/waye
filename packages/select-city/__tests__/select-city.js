@@ -1,6 +1,4 @@
-// import Vue from 'vue'
 import { shallowMount } from '@vue/test-utils'
-// import { createComp } from '../../utils'
 import QlSelectCity from 'waye/select-city'
 
 describe('城市下拉组件', () => {

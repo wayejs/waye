@@ -7,6 +7,7 @@
   "circle": "./packages/circle/index.js",
   "date-picker": "./packages/date-picker/index.js",
   "dialog": "./packages/dialog/index.js",
+  "dialog-form": "./packages/dialog-form/index.js",
   "form": "./packages/form/index.js",
   "frame-viewer": "./packages/frame-viewer/index.js",
   "icon": "./packages/icon/index.js",

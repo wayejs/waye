@@ -1,6 +1,6 @@
 {
   "name": "waye",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "waye base component",
   "main": "lib/waye.common.js",
   "files": [
@@ -9,19 +9,19 @@
     "packages"
   ],
   "scripts": {
-    "dev": "vue-cli-service serve",
-    "lerna": "./node_modules/.bin/lerna publish",
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
-    "clean": "rimraf lib && rimraf packages/*/lib",
-    "lint": "eslint src/**/* test/**/* packages/**/* build/**/* --fix",
-    "dist": "webpack --config build/webpack.conf.js && webpack --config build/webpack.common.js && webpack --config build/webpack.component.js",
+    "build:file": "node build/bin/build-entry.js",
     "build:utils": "babel src --out-dir lib --ignore src/index.js",
     "build:theme": "node build/bin/gen-cssfile && gulp build --gulpfile packages/theme/gulpfile.js && cp-cli packages/theme/lib lib/theme",
+    "lerna": "./node_modules/.bin/lerna publish",
+    "docs:dev": "yarn build:file && vuepress dev docs",
+    "docs:build": "arn build:file && vuepress build docs",
+    "clean": "rimraf lib && rimraf packages/*/lib",
+    "lint": "eslint src/**/* test/**/* packages/**/* build/**/* --quiet",
     "waye:all": "webpack --config build/webpack.common.js",
     "waye:comp": "webpack --config build/webpack.component.js",
     "waye:umd": "webpack --config build/webpack.conf.js",
-    "publish": "npm publish --registry=http://registry.npmjs.org --access=public",
+    "dist": "yarn clean && yarn lint && yarn build:file && yarn waye:all && yarn waye:comp && yarn waye:umd && yarn build:utils && yarn build:theme",
+    "pub": "sh build/release.sh",
     "test": "vue-cli-service test:unit"
   },
   "dependencies": {
@@ -47,6 +47,7 @@
     "gulp-autoprefixer": "^6.0.0",
     "gulp-cssmin": "^0.2.0",
     "gulp-sass": "^4.0.2",
+    "json-templater": "^1.0.4",
     "lerna": "^3.15.0",
     "node-sass": "^4.11.0",
     "progress-bar-webpack-plugin": "^1.11.0",

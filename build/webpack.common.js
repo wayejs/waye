@@ -1,8 +1,8 @@
-const path = require('path');
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const path = require('path')
+const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
-const config = require('./config');
+const config = require('./config')
 
 module.exports = {
   mode: 'production',
@@ -68,4 +68,4 @@ module.exports = {
     new ProgressBarPlugin(),
     new VueLoaderPlugin()
   ]
-};
+}
