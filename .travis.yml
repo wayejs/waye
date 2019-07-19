@@ -1,13 +1,11 @@
+sudo: false
 language: node_js
-node_js:
-  - lts/*
-script:
-  - npm run docs:build
-deploy:
-  provider: pages
-  skip-cleanup: true
-  local_dir: docs/.vuepress/dist
-  github-token: fdf5bc2da6d92e69c7ae3f19db6af296276b3e4a # a token generated on github allowing travis to push code on you repository
-  keep-history: true
-  on:
-    branch: master
+node_js: 10
+addons:
+  chrome: stable
+before_install:
+- export TRAVIS_COMMIT_MSG="[deploy] $(git log --format='%h - %B' --no-merges -n 1)"
+- export TRAVIS_COMMIT_USER="$(git log --no-merges -n 1 --format=%an)"
+- export TRAVIS_COMMIT_EMAIL="$(git log --no-merges -n 1 --format=%ae)"
+after_success:
+- sh build/deploy-ci.sh
