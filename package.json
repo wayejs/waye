@@ -22,7 +22,7 @@
     "waye:comp": "webpack --config build/webpack.component.js",
     "waye:umd": "webpack --config build/webpack.conf.js",
     "publish": "npm publish --registry=http://registry.npmjs.org --access=public",
-    "test": "test"
+    "test": "vue-cli-service test:unit"
   },
   "dependencies": {
     "element-ui": "^2.10.1",
@@ -30,6 +30,7 @@
     "@waye/area-data": "^5.1.1"
   },
   "devDependencies": {
+    "@vue/cli-service": "^3.0.3",
     "@vue/cli-plugin-babel": "^3.9.0",
     "@vue/cli-plugin-eslint": "^3.9.0",
     "@vue/cli-plugin-unit-jest": "^3.8.0",
@@ -75,6 +76,44 @@
     "last 2 versions",
     "not ie <= 8"
   ],
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json",
+      "vue"
+    ],
+    "setupFiles": [
+      "<rootDir>tests/unit/setup"
+    ],
+    "transform": {
+      "^.+\\.vue$": "vue-jest",
+      ".+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
+      "^.+\\.js?$": "babel-jest",
+      "^.+\\.jsx?$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1",
+      "^waye/(.*)$": "<rootDir>/packages/$1"
+    },
+    "snapshotSerializers": [
+      "jest-serializer-vue"
+    ],
+    "testMatch": [
+      "**/tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)"
+    ],
+    "testPathIgnorePatterns": [
+      "/.history"
+    ],
+    "testURL": "http://localhost/",
+    "transformIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "watchPlugins": [
+      "jest-watch-typeahead/filename",
+      "jest-watch-typeahead/testname"
+    ]
+  },
   "author": "lynzz",
   "license": "MIT"
 }

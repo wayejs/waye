@@ -176,8 +176,7 @@ export default {
     }
   },
   mounted () {
-    const query = this.fetchProvince
-    query({ needFilter: this.needFilter }).then(data => {
+    this.fetchProvince({ needFilter: this.needFilter }).then(data => {
       this.provinceList = data
       if (this.selected) {
         this.processValueList(this.selected)

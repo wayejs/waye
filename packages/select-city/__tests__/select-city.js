@@ -1,7 +1,7 @@
 // import Vue from 'vue'
 import { shallowMount } from '@vue/test-utils'
 // import { createComp } from '../../utils'
-import QlSelectCity from '../select-city'
+import QlSelectCity from 'waye/select-city'
 
 describe('城市下拉组件', () => {
   const fetchProvince = () => {
@@ -25,7 +25,9 @@ describe('城市下拉组件', () => {
 
   it('初始组件', () => {
     const wrapper = shallowMount(QlSelectCity, {
-      fetchProvince
+      propsData: {
+        fetchProvince
+      }
     })
 
     // expect(wrapper.html()).toMatchSnapshot()
