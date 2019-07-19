@@ -13,7 +13,7 @@ import ButtonConfirm from '../packages/button-confirm'
 import FrameViewer from '../packages/frame-viewer'
 import CardTable from '../packages/card-table'
 import Card from '../packages/card'
-import Circle from '../packages/Circle'
+import Circle from '../packages/circle'
 import ResubmitPrevent from '../packages/resubmit-prevent'
 
 import ConfirmDelete from './mixins/confirm-delete'
