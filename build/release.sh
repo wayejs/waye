@@ -15,18 +15,6 @@ then
   # build
   VERSION=$VERSION npm run dist
 
-  # publish theme
-  echo "Releasing theme $VERSION ..."
-  cd packages/theme
-  npm version $VERSION --message "[release] $VERSION"
-  if [[ $VERSION =~ "beta" ]]
-  then
-    npm publish --registry=http://registry.npmjs.org --access=public --tag beta
-  else
-    npm publish --registry=http://registry.npmjs.org --access=public
-  fi
-  cd ../..
-
   # commit
   git add -A
   git commit -m "[build] $VERSION"
