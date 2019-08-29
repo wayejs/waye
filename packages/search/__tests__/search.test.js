@@ -1,7 +1,6 @@
 import { shallowMount } from '@vue/test-utils'
-// import { createRenderer } from 'vue-server-renderer'
 
-import Search from './search'
+import Search from '../search.vue'
 const fetchData = () => {
   return new Promise(resolve => {
     setTimeout(() => {
@@ -19,8 +18,8 @@ const fetchData = () => {
     }, 0)
   })
 }
-describe('查询组件', () => {
-  it('默认初始', () => {
+describe('Search', () => {
+  it('init Search', () => {
     const wrapper = shallowMount(Search, {
       propsData: {
         fetch: fetchData,
@@ -37,9 +36,9 @@ describe('查询组件', () => {
       }
     })
     expect(wrapper.contains('.wy-search')).toBe(true)
-    expect(wrapper.html()).toMatchSnapshot()
+    // expect(wrapper.html()).toMatchSnapshot()
   })
-  it('不显示日期范围', () => {
+  it('not show daterange', () => {
     const wrapper = shallowMount(Search, {
       propsData: {
         fetch: fetchData,

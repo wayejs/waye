@@ -1,29 +1,27 @@
+// import moment from 'moment'
+// import MockDate from 'mockdate'
 import Vue from 'vue'
 
-let id = 0
+// export function setMockDate (dateString = '2017-09-18T03:30:07.795') {
+//   MockDate.set(moment(dateString))
+// }
 
-export const createEle = () => {
-  const el = document.createElement('div')
+// export function resetMockDate () {
+//   MockDate.reset()
+// }
 
-  el.id = 'ql' + ++id
-  document.body.appendChild(el)
-
-  return el
-}
-
-export const destroyVM = (vm) => {
-  vm.$destory && vm.$destory()
-  vm.$el && vm.$el.parentNode && vm.$el.parentNode.removeChild(vm.$el)
-}
-
-/**
- * 创建组件实例
- * @param {*} Comp 组件或 组件模板
- * @param {*} mounted 是否挂载到 dom
- */
-export const createComp = (Comp, mounted = false) => {
-  if (Object.prototype.toString.call(Comp) === '[object String]') {
-    Comp = {template: Comp}
-  }
-  return new Vue(Comp).$mount(mounted === false ? null : createEle())
+export function asyncExpect (fn, timeout) {
+  return new Promise(resolve => {
+    if (typeof timeout === 'number') {
+      setTimeout(() => {
+        fn()
+        resolve()
+      }, timeout)
+    } else {
+      Vue.nextTick(() => {
+        fn()
+        resolve()
+      })
+    }
+  })
 }

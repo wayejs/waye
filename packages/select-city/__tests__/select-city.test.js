@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import QlSelectCity from 'waye/select-city'
+import QlSelectCity from '../select-city'
 
 describe('城市下拉组件', () => {
   const fetchProvince = () => {

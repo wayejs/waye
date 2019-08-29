@@ -15,6 +15,7 @@
   "search": "./packages/search/index.js",
   "select": "./packages/select/index.js",
   "select-city": "./packages/select-city/index.js",
+  "select-region": "./packages/select-region/index.js",
   "table": "./packages/table/index.js",
   "tag": "./packages/tag/index.js"
 }

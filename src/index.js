@@ -15,6 +15,7 @@ import ResubmitPrevent from '../packages/resubmit-prevent/index.js';
 import Search from '../packages/search/index.js';
 import Select from '../packages/select/index.js';
 import SelectCity from '../packages/select-city/index.js';
+import SelectRegion from '../packages/select-region/index.js';
 import Table from '../packages/table/index.js';
 import Tag from '../packages/tag/index.js';
 const components = [
@@ -34,6 +35,7 @@ const components = [
   Search,
   Select,
   SelectCity,
+  SelectRegion,
   Table,
   Tag
 ];
@@ -69,6 +71,7 @@ export default {
   Search,
   Select,
   SelectCity,
+  SelectRegion,
   Table,
   Tag
 };

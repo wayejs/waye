@@ -1,0 +1,18 @@
+@import "mixins/mixins.scss";
+
+@include b(select-region) {
+  .el-select__tags-text {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  @include e(item) {
+    width: 100px;
+    vertical-align: top;
+    max-width: 230px;
+    margin-right: 4px;
+  }
+}

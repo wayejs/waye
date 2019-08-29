@@ -5,7 +5,7 @@ function resolve (dir) {
 module.exports = {
   title: 'WayeJs',
   description: '基于 Element UI 扩展的组件',
-  base: '/waye/',
+  base: '/',
   // head: [
   //   ['link', { rel: 'stylesheet', href: 'https://unpkg.com/element-ui/lib/theme-chalk/index.css' }],
   //   ['script', { src: 'https://unpkg.com/element-ui/lib/index.js' }]
@@ -44,7 +44,7 @@ module.exports = {
                 'resubmit-prevent',
                 'search',
                 'select',
-                'select-city',
+                'select-region',
                 'table',
                 'tag'
               ]
@@ -60,10 +60,10 @@ module.exports = {
     //   moment: 'moment',
     //   'element-ui': 'element-ui'
     // },
-    resolve: {
-      alias: {
-        '@waye': path.resolve(__dirname, '../../packages')
-      }
-    }
+    // resolve: {
+    //   alias: {
+    //     'waye': path.resolve(__dirname, '../../src/index.js')
+    //   }
+    // }
   }
 }
