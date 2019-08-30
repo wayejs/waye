@@ -5,9 +5,9 @@
 
 
 ```
-yarn add waye
+yarn add @waye/ui
 或
-npm install waye -S
+npm install @waye/ui -S
 ```
 
 
