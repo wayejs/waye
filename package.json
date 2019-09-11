@@ -14,7 +14,7 @@
     "build:theme": "node build/bin/gen-cssfile && gulp build --gulpfile packages/theme/gulpfile.js && cp-cli packages/theme/lib lib/theme",
     "lerna": "./node_modules/.bin/lerna publish",
     "docs:dev": "yarn build:file && vuepress dev docs",
-    "docs:build": "arn build:file && vuepress build docs",
+    "docs:build": "yarn build:file && vuepress build docs",
     "clean": "rimraf lib && rimraf packages/*/lib",
     "lint": "eslint src/**/* test/**/* packages/**/* build/**/* --quiet",
     "waye:all": "webpack --config build/webpack.common.js",

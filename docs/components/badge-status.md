@@ -1,10 +1,10 @@
 # Badge Status 状态
 
 ```html
-<wy-badge-status type="primary"></wy-badge-status>
+<wy-badge-status type="primary">状态</wy-badge-status>
 ```
 
-<badge-status type="primary"/>
+<badge-status />
 
 
 ## Props

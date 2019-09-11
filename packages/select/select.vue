@@ -1,5 +1,6 @@
 <template>
   <el-select
+    class="wy-select"
     v-model="currentValue"
     v-bind="$attrs"
     :filterable="filterable">
@@ -32,15 +33,9 @@ export default {
       default: true
     },
     // 值 key , 以后弃用
-    value: {
-      type: String,
-      default: 'value'
-    },
+    value: String,
     // 文本 key，以后弃用
-    label: {
-      type: String,
-      default: 'label'
-    },
+    label: String,
     valueKey: {
       type: String,
       default: 'value'
@@ -79,12 +74,10 @@ export default {
     currentValue (val) {
       this.$emit('selected-change', val)
       if (val) {
-        this.list.forEach(item => {
-          if (val === item.value) {
-            this.$emit('change', item)
-            return false
-          }
-        })
+        let item = this.list.find(n => n.value === val)
+        if (item) {
+          this.$emit('change', item)
+        }
       }
     }
   },
@@ -117,8 +110,8 @@ export default {
       if (typeof this.postData === 'function') {
         data = this.postData(data)
       } else {
-        let valueKey = this.value || this.valueKey
-        let labelKey = this.label || this.labelKey
+        let valueKey = this.value || this.valueKey || 'value'
+        let labelKey = this.label || this.labelKey || 'label'
         data.forEach(item => {
           item.value = item[valueKey]
           item.label = item[labelKey]

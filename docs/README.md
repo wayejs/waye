@@ -2,7 +2,7 @@
 home: true
 heroImage: /hero.png
 heroText: WayeJs
-tagline: Hero 副标题
+tagline: 基于 Element UI 的组件
 actionText: 快速上手 →
 actionLink: /components/
 features:
