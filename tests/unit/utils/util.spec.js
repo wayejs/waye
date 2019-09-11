@@ -1,4 +1,4 @@
-import { formatPrecision } from '@/utils/util'
+import { formatPrecision } from 'main/utils/util'
 
 describe('Utils/util', () => {
   it('格式正整数', () => {
