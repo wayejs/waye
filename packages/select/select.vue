@@ -1,6 +1,6 @@
 <template>
   <el-select
-    class="wy-select"
+    :class="[`${prefixCls}-select`]"
     v-model="currentValue"
     v-bind="$attrs"
     :filterable="filterable">
@@ -59,6 +59,12 @@ export default {
     selected: {
       type: [Number, String, Array],
       default: ''
+    }
+  },
+
+  computed: {
+    prefixCls () {
+      return this.$WAYE.prefixCls
     }
   },
 

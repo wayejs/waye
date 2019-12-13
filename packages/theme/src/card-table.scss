@@ -3,7 +3,7 @@
   position: relative;
   .el-card__body {
     padding: 0;
-    .wy-table {
+    .#{$--namespace}-table {
       border: 0;
     }
   }

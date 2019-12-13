@@ -1,12 +1,12 @@
 <template>
-  <el-card class="wy-card-table">
+  <el-card :class="[`${prefixCls}-card-table`]">
     <template slot="header">
-      <div class="wy-card-table__title">
+      <div :class="[`${prefixCls}-card-table__title`]">
         <slot name="title">
           {{title}}
         </slot>
       </div>
-      <div v-if="$slots.action" class="wy-card-table__action">
+      <div v-if="$slots.action" :class="[`${prefixCls}-card-table__action`]">
         <slot name="action"></slot>
       </div>
     </template>
@@ -22,8 +22,9 @@ export default {
   props: {
     title: String
   },
-  data () {
-    return {
+  computed: {
+    prefixCls () {
+      return this.$WAYE.prefixCls
     }
   }
 }

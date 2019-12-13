@@ -1,13 +1,15 @@
 <template>
-  <el-dialog class="wy-frame-viewer" fullscreen :visible="showDialog">
+  <el-dialog :class="[`${prefixCls}-frame-viewer`]" fullscreen :visible="showDialog">
     <div
-      class="ql-frame-viewer__header">
+      :class="[`${prefixCls}-frame-viewer__header`]">
       <h3>{{title}}</h3>
-      <span class="ql-frame-viewer__close" @click="handleClose">
+      <span
+        :class="[`${prefixCls}-frame-viewer__close`]"
+        @click="handleClose">
         关闭
       </span>
     </div>
-    <iframe v-if="showDialog" class="ql-frame-viewer__body" :src="url" frameborder="0"></iframe>
+    <iframe v-if="showDialog" :class="[`${prefixCls}-frame-viewer__body`]" :src="url" frameborder="0"></iframe>
   </el-dialog>
 </template>
 
@@ -20,8 +22,9 @@ export default {
     title: String,
     url: String
   },
-  data () {
-    return {
+  computed: {
+    prefixCls () {
+      return this.$WAYE.prefixCls
     }
   },
   mounted () {

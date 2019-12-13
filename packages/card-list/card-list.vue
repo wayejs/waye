@@ -1,20 +1,19 @@
 <template>
-  <div class="wy-card-list">
+  <div :class="[`${prefixCls}-card-list`]">
     <transition-group
       :name="closeTransition ? '' : 'wy-card-list'"
-      class="wy-card-list__list"
+      :class="[`${prefixCls}-card-list__list`]"
       tag="div">
       <el-card
         :key="item[rowKey]"
         :style="itemStyle"
         v-for="item in data"
-        class="wy-card-list__item"
-        :class="[getItemClassName(item)]"
+        :class="[`${prefixCls}-card-list__item`, getItemClassName(item)]"
         @click.native="handleClick(item)">
         <slot :card="item"></slot>
       </el-card>
     </transition-group>
-    <div class="wy-card-list__empty" v-if="!data.length">
+    <div :class="[`${prefixCls}-card-list__empty`]" v-if="!data.length">
       暂无数据
     </div>
   </div>
@@ -48,6 +47,9 @@ export default {
     }
   },
   computed: {
+    prefixCls () {
+      return this.$WAYE.prefixCls
+    },
     itemStyle () {
       let { itemOffset, itemWidth } = this
       return {

@@ -2,15 +2,7 @@
   <table
     cellpadding="0"
     cellspacing="0"
-    :class="{
-      'wy-table--border': border,
-      'wy-table--center': center,
-      'wy-table--compact': compact,
-      'is-gray': gray,
-      'is-dark': dark,
-      'is-fixed-cell': fixedCell
-    }"
-    class="wy-table">
+    :class="clsName">
     <slot></slot>
   </table>
 </template>
@@ -31,12 +23,34 @@ export default {
     fixedCell: Boolean,
     compact: Boolean
   },
-  data () {
-    return {
-    }
-  },
-  mounted () {
+  computed: {
+    prefixCls () {
+      return this.$WAYE.prefixCls
+    },
+    clsName () {
+      const { prefixCls, border, center, compact, gray, dark, fixedCell } = this
+      const ret = [`${prefixCls}-table`]
+      if (border) {
+        ret.push(`${prefixCls}-table--border`)
+      }
+      if (center) {
+        ret.push(`${prefixCls}-table--center`)
+      }
+      if (compact) {
+        ret.push(`${prefixCls}-table--compact`)
+      }
+      if (gray) {
+        ret.push('is-gray')
+      }
+      if (dark) {
+        ret.push('is-dark')
+      }
+      if (fixedCell) {
+        ret.push('is-fixed-cell')
+      }
 
+      return ret.join(' ')
+    }
   }
 }
 </script>

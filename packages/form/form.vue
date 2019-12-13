@@ -61,11 +61,17 @@
 </template>
 
 <script>
-import emitter from '../../src/mixins/emitter'
+import emitter from 'main/mixins/emitter'
+import WySelect from 'packages/select'
+import WySelectCity from 'packages/select-city'
 export default {
   name: 'WyForm',
   componentname: 'WyForm',
   mixins: [emitter],
+  components: {
+    WySelect,
+    WySelectCity
+  },
   props: {
     // 表单字段 [{prop, label, type, rules:[{required, message}]]
     labelWidth: {
@@ -120,7 +126,7 @@ export default {
   },
 
   created () {
-    this.$on('ql.form.view', data => {
+    this.$on('wy.form.view', data => {
       this.form = Object.assign({}, this.form, data)
     })
   },
@@ -148,13 +154,13 @@ export default {
             params[this.idKey] = this.id
             this.onUpdate(params).then((data) => {
               this.$message.success(`${this.title}已更新`)
-              this.dispatch('QlDialogForm', 'ql.form.update', [data])
+              this.dispatch('WyDialogForm', 'wy.form.update', [data])
               this.$emit('update', data)
             })
           } else {
             this.onAdd(params).then((data) => {
               this.$message.success(`${this.title}已添加`)
-              this.dispatch('QlDialogForm', 'ql.form.add', [data])
+              this.dispatch('WyDialogForm', 'wy.form.add', [data])
               this.$emit('add', data)
             })
           }

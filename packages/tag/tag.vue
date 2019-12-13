@@ -5,27 +5,30 @@
     @click.native="handleClick"
     @mouseenter.native="handleMouseenter"
     @mouseleave.native="handleMouseleave"
-    class="wy-tag">
+    :class="[`${prefixCls}-tag`]">
     <wy-icon v-if="icon" :name="icon"></wy-icon>
-    <span v-if="label" class="wy-tag__title">
+    <span v-if="label" :class="[`${prefixCls}-tag__title`]">
       {{label}}
     </span>
-    <slot>
-
-    </slot>
+    <slot></slot>
   </el-tag>
 </template>
 
 <script>
+import WyIcon from 'packages/icon'
 export default {
   name: 'WyTag',
   inheritAttrs: false,
+  components: {
+    WyIcon
+  },
   props: {
     icon: String,
     label: String
   },
-  data () {
-    return {
+  computed: {
+    prefixCls () {
+      return this.$WAYE.prefixCls
     }
   },
   methods: {

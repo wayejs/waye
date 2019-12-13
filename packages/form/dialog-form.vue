@@ -70,17 +70,17 @@ export default {
           if (typeof this.afterGet === 'function') {
             data = this.afterGet(data)
           }
-          this.broadcast('QlForm', 'ql.form.view', [data])
+          this.broadcast('WyForm', 'wy.form.view', [data])
         })
       }
     }
   },
   created () {
-    this.$on('ql.form.update', data => {
+    this.$on('wy.form.update', data => {
       this.showDialog = false
       this.$emit('update', data)
     })
-    this.$on('ql.form.add', data => {
+    this.$on('wy.form.add', data => {
       this.showDialog = false
       this.$emit('add', data)
     })

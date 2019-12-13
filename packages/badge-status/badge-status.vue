@@ -1,10 +1,3 @@
-<template>
-  <span class="wy-badge-status">
-    <span class="wy-badge-status__dot" :class="[currCls]"></span>
-    <span class="wy-badge-status__text"><slot></slot></span>
-  </span>
-</template>
-
 <script>
 export default {
   name: 'WyBadgeStatus',
@@ -16,13 +9,25 @@ export default {
     }
   },
   computed: {
-    currCls () {
-      return `is-${this.type}`
+    prefixCls () {
+      return this.$WAYE.prefixCls
     }
   },
-  data () {
-    return {
-    }
+
+  render () {
+    const { prefixCls, $slots, type } = this
+    const name = 'badge-status'
+    const elCls = `${prefixCls}-${name}`
+    const dotCls = `${prefixCls}-${name}__dot is-${type}`
+    const textCls = `${prefixCls}-${name}__text`
+    return (
+      <span class={elCls}>
+        <span class={dotCls}></span>
+        <span class={textCls}>
+          {$slots.default}
+        </span>
+      </span>
+    )
   }
 }
 </script>

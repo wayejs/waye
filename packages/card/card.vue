@@ -1,14 +1,14 @@
 <template>
-  <el-card class="wy-card" shadow="hover" :body-style="{padding: 0}">
+  <el-card :class="[`${prefixCls}-card`]" shadow="hover" :body-style="{padding: 0}">
     <div slot="header" v-if="title">
       <span>{{title}}</span>
     </div>
-    <div class="wy-card__body">
+    <div :class="[`${prefixCls}-card__body`]">
       <slot></slot>
     </div>
-    <div class="wy-card__actions" v-if="actions && actions.length">
+    <div :class="[`${prefixCls}-card__actions`]" v-if="actions && actions.length">
       <div
-        class="wy-card__actions-item"
+        :class="[`${prefixCls}-card__actions-item`]"
         :style="actionStyle"
         :key="item.text"
         @click="item.handler"

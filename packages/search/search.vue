@@ -1,12 +1,14 @@
 <template>
-  <div class="wy-search">
-    <div class="wy-search__header" v-if="hasQuery">
+  <div :class="[`${prefixCls}-search`]">
+    <div :class="[`${prefixCls}-search__header`]" v-if="hasQuery">
       <slot name="toggle"></slot>
       <div
-        class="wy-search--simple"
-        :class="{
-          'is-right': hasAdvanced
-        }"
+        :class="[
+          `${prefixCls}-search--simple`,
+          {
+            'is-right': hasAdvanced
+          }
+        ]"
         v-show="simple">
         <el-form :inline="true" :model="model" ref="simpleForm">
           <slot name="simple"></slot>
@@ -25,7 +27,7 @@
           </el-form-item>
         </el-form>
       </div>
-      <div class="wy-search--advanced" v-show="!simple">
+      <div :class="[`${prefixCls}-search--advanced`]"  v-show="!simple">
         <el-form :model="model" ref="advancedForm" :label-width="labelWidth">
            <slot name="advanced"></slot>
            <el-row>
@@ -42,7 +44,7 @@
                 </el-form-item>
              </el-col>
            </el-row>
-           <div class="wy-search__btns">
+           <div :class="[`${prefixCls}-search__btns`]">
              <el-button type="primary" @click.prevent="handleSearch" native-type="submit" icon="el-icon-search">搜索</el-button>
               <el-button @click="handleResetForm('advancedForm')">重置</el-button>
               <el-button type="text" @click="simple = true">收起 <i class="el-icon-arrow-up"></i></el-button>
@@ -51,14 +53,16 @@
       </div>
     </div>
     <div
-      :class="{
-        'is-right': toolsPosition === 'right',
-        'is-left': toolsPosition === 'left'
-      }"
-      class="wy-search__tools-top">
+      :class="[
+        `${prefixCls}-search__tools-top`,
+        {
+          'is-right': toolsPosition === 'right',
+          'is-left': toolsPosition === 'left'
+        }
+      ]">
       <slot name="topTools"></slot>
     </div>
-    <div class="wy-search__body" v-loading="loading">
+    <div :class="[`${prefixCls}-search__body`]" v-loading="loading">
       <el-table
         :span-method="spanMethod"
         :row-class-name="rowClassName"
@@ -114,8 +118,8 @@
       </el-table>
       <slot></slot>
     </div>
-    <div class="wy-search__footer">
-      <div class="wy-search__tools-bottom">
+    <div :class="[`${prefixCls}-search__footer`]">
+      <div :class="[`${prefixCls}-search__tools-bottom`]">
         <slot name="bottomTools"></slot>
       </div>
       <el-pagination
@@ -261,6 +265,9 @@ export default {
   computed: {
     hasPager () {
       return this.pageCount > 0 && this.showPage && !this.showAll
+    },
+    prefixCls () {
+      return this.$WAYE.prefixCls
     },
     currKeyMaps () {
       let keyMaps

@@ -1,10 +1,10 @@
 import Element from 'element-ui'
 import Waye from '../../src/index'
 import 'element-ui/lib/theme-chalk/reset.css'
-import 'element-ui/lib/theme-chalk/index.css'
+// import 'element-ui/lib/theme-chalk/index.css'
 // import '@/assets/iconfont/iconfont.css'
 // import '@/assets/scss/theme.scss'
-import '../../packages/theme/src/index.scss'
+import './scss/var.scss'
 
 export default ({
   Vue, // VuePress 正在使用的 Vue 构造函数
@@ -14,5 +14,5 @@ export default ({
 }) => {
   // ...做一些其他的应用级别的优化
   Vue.use(Element, { size: 'medium' })
-  Vue.use(Waye)
+  Vue.use(Waye, { prefixCls: 'ql' })
 }

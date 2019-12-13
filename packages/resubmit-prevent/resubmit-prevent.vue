@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'ResubmitPrevent',
+  name: 'WyResubmitPrevent',
   props: {
     fetch: Function,
     params: [String, Object]

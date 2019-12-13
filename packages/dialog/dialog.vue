@@ -1,14 +1,14 @@
 <template>
   <el-dialog
     v-draggable
-    class="wy-dialog"
+    :class="[`${prefixCls}-dialog`]"
     v-bind="$attrs"
     :close-on-click-modal="closeOnClickModal"
     :fullscreen="fullscreen"
   >
     <div slot="title">
       <span class="el-dialog__title">{{$attrs.title}}</span>
-      <div class="wy-dialog__toolbar">
+      <div :class="[`${prefixCls}-dialog__toolbar`]">
         <wy-icon :name="fullscreen ? 'restored' : 'max'" @click="handleToggle"></wy-icon>
       </div>
     </div>
@@ -20,9 +20,13 @@
 </template>
 
 <script>
+import WyIcon from 'packages/icon'
 export default {
   inheritAttrs: false,
   name: 'WyDialog',
+  components: {
+    WyIcon
+  },
   props: {
     closeOnClickModal: {
       type: Boolean,
@@ -32,6 +36,11 @@ export default {
   data () {
     return {
       fullscreen: false
+    }
+  },
+  computed: {
+    prefixCls () {
+      return this.$WAYE.prefixCls
     }
   },
   directives: {

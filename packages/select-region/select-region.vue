@@ -1,7 +1,7 @@
 <template>
-  <div class="wy-select-region">
+  <div :class="[`${prefixCls}-select-region`]">
     <el-select
-      class="wy-select-region__item"
+      :class="[`${prefixCls}-select-region__item`]"
       :disabled="disabledProvince"
       :multiple="multiple"
       v-model="provinceId"
@@ -16,7 +16,7 @@
       </el-option>
     </el-select>
     <el-select
-      class="wy-select-region__item"
+      :class="[`${prefixCls}-select-region__item`]"
       v-show="displayCity"
       :disabled="disabledCity"
       :multiple="multiple"
@@ -33,7 +33,7 @@
     </el-select>
     <el-select
       v-if="!special"
-      class="wy-select-region__item"
+      :class="[`${prefixCls}-select-region__item`]"
       clearable
       @change="areaChange"
       :disabled="disabledArea"
@@ -98,6 +98,9 @@ export default {
   },
 
   computed: {
+    prefixCls () {
+      return this.$WAYE.prefixCls
+    },
     // 香港或澳门行政区
     special () {
       return this.provinceId === '810000' || this.provinceId === '820000'

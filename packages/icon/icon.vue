@@ -9,9 +9,13 @@ export default {
     name: String
   },
   computed: {
+    prefixCls () {
+      return this.$WAYE.prefixCls
+    },
     cls () {
-      if (this.name) {
-        return `wyicon icon-${this.name}`
+      const { name, prefixCls } = this
+      if (name) {
+        return `${prefixCls}icon icon-${name}`
       }
       return ''
     }

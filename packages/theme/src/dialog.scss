@@ -20,7 +20,7 @@
     right: 40px;
     cursor: pointer;
 
-    .wyicon {
+    .#{$--namespace}icon {
       color: #999;
       &:hover {
         color: $--link-hover-color;

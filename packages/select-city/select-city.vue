@@ -1,5 +1,5 @@
 <template>
-  <div class="wy-select-city">
+  <div :class="[`${prefixCls}-select-city`]">
     <el-select
       filterable
       v-model="provinceId"
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import emitter from '../../src/mixins/emitter'
+import emitter from 'main/mixins/emitter'
 export default {
   name: 'WySelectCity',
   mixins: [emitter],
@@ -82,6 +82,9 @@ export default {
     }
   },
   computed: {
+    prefixCls () {
+      return this.$WAYE.prefixCls
+    },
     isChangeProvince () {
       return this.provinceId !== (this.defaultValue[0] || '')
     },

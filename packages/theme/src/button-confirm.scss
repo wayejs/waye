@@ -1,7 +1,7 @@
-.el-button +.wy-button-confirm,
-.wy-button-confirm +.wy-button-confirm {
+.el-button +.#{$--namespace}-button-confirm,
+.#{$--namespace}-button-confirm +.#{$--namespace}-button-confirm {
   margin-left: 6px;
 }
-.wy-button-confirm {
+.#{$--namespace}-button-confirm {
   display: inline-block;
 }

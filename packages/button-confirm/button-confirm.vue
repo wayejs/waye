@@ -1,5 +1,5 @@
 <template>
-<div class="wy-button-confirm">
+<div :class="[clsName]">
   <el-popover
     v-if="popover"
     placement="top"
@@ -62,6 +62,14 @@ export default {
   data () {
     return {
       visible: false
+    }
+  },
+  computed: {
+    prefixCls () {
+      return this.$WAYE.prefixCls
+    },
+    clsName () {
+      return `${this.prefixCls}-button-confirm`
     }
   },
   methods: {
