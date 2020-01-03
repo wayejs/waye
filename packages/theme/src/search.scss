@@ -16,7 +16,6 @@
   }
 
   @include e(header) {
-    background: #c8e5f1;
     padding: 10px;
     border-radius: 3px;
     @include utils-clearfix();
