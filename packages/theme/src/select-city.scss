@@ -1,3 +1,5 @@
+@import "mixins/config.scss";
+
 .#{$--namespace}-select-city {
   .el-select {
     width: 100px;
