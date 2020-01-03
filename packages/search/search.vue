@@ -13,11 +13,11 @@
         <el-form :inline="true" :model="model" ref="simpleForm">
           <slot name="simple"></slot>
           <el-form-item label="开始时间" v-if="showDaterange && !hasAdvanced">
-            <el-date-picker v-model="startTime" id="startTime" :type="dateType" :format="displayDateFormat" :picker-options="startPickerOptions" :editable="false" :clearable="false" placeholder="开始时间">
+            <el-date-picker v-model="startTime" :type="dateType" :format="displayDateFormat" :picker-options="startPickerOptions" :editable="false" :clearable="false" placeholder="开始时间">
             </el-date-picker>
           </el-form-item>
           <el-form-item label="结束时间" v-if="showDaterange && !hasAdvanced">
-            <el-date-picker v-model="endTime" id="endTime" :type="dateType" :format="displayDateFormat" :picker-options="endPickerOptions" :editable="false" :clearable="false" placeholder="结束时间">
+            <el-date-picker v-model="endTime" :type="dateType" :format="displayDateFormat" :picker-options="endPickerOptions" :editable="false" :clearable="false" placeholder="结束时间">
             </el-date-picker>
           </el-form-item>
           <el-form-item>
@@ -33,13 +33,13 @@
            <el-row>
              <el-col :span="8">
                <el-form-item label="开始时间" v-if="showDaterange">
-                <el-date-picker v-model="startTime" id="startTime" :type="dateType" :format="displayDateFormat" :picker-options="startPickerOptions" :editable="false" :clearable="false" placeholder="开始时间">
+                <el-date-picker v-model="startTime" :type="dateType" :format="displayDateFormat" :picker-options="startPickerOptions" :editable="false" :clearable="false" placeholder="开始时间">
                 </el-date-picker>
               </el-form-item>
              </el-col>
              <el-col :span="8">
                 <el-form-item label="结束时间" v-if="showDaterange">
-                  <el-date-picker v-model="endTime" id="endTime" :type="dateType" :format="displayDateFormat" :picker-options="endPickerOptions" :editable="false" :clearable="false" placeholder="结束时间">
+                  <el-date-picker v-model="endTime" :type="dateType" :format="displayDateFormat" :picker-options="endPickerOptions" :editable="false" :clearable="false" placeholder="结束时间">
                   </el-date-picker>
                 </el-form-item>
              </el-col>
