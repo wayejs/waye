@@ -1,6 +1,6 @@
 {
   "name": "@waye/ui",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "waye base component",
   "main": "lib/waye.common.js",
   "files": [
