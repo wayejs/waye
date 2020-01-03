@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`ButtonConfirm init ButtonConfirm 1`] = `
-<div class="wy-button-confirm" clickhandler="stub">
-  <el-button-stub type="primary" icon="" nativetype="button">delete</el-button-stub>
-</div>
-`;

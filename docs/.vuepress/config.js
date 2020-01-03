@@ -60,10 +60,11 @@ module.exports = {
     //   moment: 'moment',
     //   'element-ui': 'element-ui'
     // },
-    // resolve: {
-    //   alias: {
-    //     'waye': path.resolve(__dirname, '../../src/index.js')
-    //   }
-    // }
+    resolve: {
+      alias: {
+        'main': path.resolve(__dirname, '../../src'),
+        packages: path.resolve(__dirname, '../../packages')
+      }
+    }
   }
 }
