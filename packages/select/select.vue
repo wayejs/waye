@@ -25,7 +25,7 @@ export default {
   props: {
     // 下拉列表请求方法
     fetch: Function,
-    queryParams: [Object, String],
+    queryParams: [Object, String, Number],
     // 静态数据
     data: Array,
     defaultFirst: Boolean,
