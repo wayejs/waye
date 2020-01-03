@@ -25,6 +25,7 @@ export default {
   props: {
     // 下拉列表请求方法
     fetch: Function,
+    queryParams: [Object, String],
     // 静态数据
     data: Array,
     defaultFirst: Boolean,
@@ -50,7 +51,9 @@ export default {
       type: String,
       default: 'disabled'
     },
+    // 显示全部
     hasAll: Boolean,
+    // 全部的默认文本
     allText: {
       type: String,
       default: '全部'
@@ -85,6 +88,15 @@ export default {
           this.$emit('change', item)
         }
       }
+    },
+    queryParams: {
+      deep: true,
+      handler () {
+        if (typeof this.fetch === 'function') {
+          this.fetchData()
+          this.currentValue = null
+        }
+      }
     }
   },
   data () {
@@ -104,14 +116,17 @@ export default {
   },
   mounted () {
     if (typeof this.fetch === 'function') {
-      this.fetch().then(data => {
-        this.transformData(data)
-      })
+      this.fetchData()
     } else if (Array.isArray(this.data)) {
       this.transformData(this.data)
     }
   },
   methods: {
+    fetchData () {
+      this.fetch(this.queryParams).then(data => {
+        this.transformData(data)
+      })
+    },
     transformData (data) {
       if (typeof this.postData === 'function') {
         data = this.postData(data)
