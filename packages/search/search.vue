@@ -2,6 +2,7 @@
   <div :class="[`${prefixCls}-search`]">
     <div :class="[`${prefixCls}-search__header`]" v-if="hasQuery">
       <slot name="toggle"></slot>
+      <slot name="form"></slot>
       <div
         :class="[
           `${prefixCls}-search--simple`,
@@ -9,17 +10,21 @@
             'is-right': hasAdvanced
           }
         ]"
+        v-if="hasSimple"
         v-show="simple">
         <el-form :inline="true" :model="model" ref="simpleForm">
           <slot name="simple"></slot>
-          <el-form-item label="开始时间" v-if="showDaterange && !hasAdvanced">
-            <el-date-picker v-model="startTime" :type="dateType" :format="displayDateFormat" :picker-options="startPickerOptions" :editable="false" :clearable="false" placeholder="开始时间">
-            </el-date-picker>
-          </el-form-item>
-          <el-form-item label="结束时间" v-if="showDaterange && !hasAdvanced">
-            <el-date-picker v-model="endTime" :type="dateType" :format="displayDateFormat" :picker-options="endPickerOptions" :editable="false" :clearable="false" placeholder="结束时间">
-            </el-date-picker>
-          </el-form-item>
+          <template v-if="showDaterange">
+            <el-form-item label="开始时间">
+              <el-date-picker v-model="startTime" :type="dateType" :format="displayDateFormat" :picker-options="startPickerOptions" :editable="false" :clearable="false" placeholder="开始时间">
+              </el-date-picker>
+            </el-form-item>
+            <el-form-item label="结束时间">
+              <el-date-picker v-model="endTime" :type="dateType" :format="displayDateFormat" :picker-options="endPickerOptions" :editable="false" :clearable="false" placeholder="结束时间">
+              </el-date-picker>
+            </el-form-item>
+          </template>
+
           <el-form-item>
             <el-button v-if="showButtonSearch" icon="el-icon-search" native-type="submit" type="primary" @click.prevent="handleSearch">搜索</el-button>
             <el-button v-if="hasReset" @click="handleResetForm('simpleForm')">重置</el-button>
@@ -27,18 +32,18 @@
           </el-form-item>
         </el-form>
       </div>
-      <div :class="[`${prefixCls}-search--advanced`]"  v-show="!simple">
+      <div v-if="hasAdvanced" :class="[`${prefixCls}-search--advanced`]"  v-show="!simple">
         <el-form :model="model" ref="advancedForm" :label-width="labelWidth">
            <slot name="advanced"></slot>
-           <el-row>
+           <el-row v-if="showDaterange">
              <el-col :span="8">
-               <el-form-item label="开始时间" v-if="showDaterange">
+               <el-form-item label="开始时间">
                 <el-date-picker v-model="startTime" :type="dateType" :format="displayDateFormat" :picker-options="startPickerOptions" :editable="false" :clearable="false" placeholder="开始时间">
                 </el-date-picker>
               </el-form-item>
              </el-col>
              <el-col :span="8">
-                <el-form-item label="结束时间" v-if="showDaterange">
+                <el-form-item label="结束时间">
                   <el-date-picker v-model="endTime" :type="dateType" :format="displayDateFormat" :picker-options="endPickerOptions" :editable="false" :clearable="false" placeholder="结束时间">
                   </el-date-picker>
                 </el-form-item>
@@ -53,6 +58,7 @@
       </div>
     </div>
     <div
+      v-if="$slots.topTools"
       :class="[
         `${prefixCls}-search__tools-top`,
         {
@@ -119,7 +125,7 @@
       <slot></slot>
     </div>
     <div :class="[`${prefixCls}-search__footer`]">
-      <div :class="[`${prefixCls}-search__tools-bottom`]">
+      <div v-if="$slots.bottomTools" :class="[`${prefixCls}-search__tools-bottom`]">
         <slot name="bottomTools"></slot>
       </div>
       <el-pagination
@@ -276,11 +282,17 @@ export default {
       }
       return keyMaps || (this.$WAYE && this.$WAYE.searchKeyMaps) || DEFAULT_KEY_MAPS
     },
-    hasQuery () {
-      return this.showDaterange || this.$slots.simple || this.$slots.advanced || this.$slots.toggle
-    },
     hasAdvanced () {
       return this.$slots.advanced
+    },
+    hasSimple () {
+      return this.$slots.simple
+    },
+    hasForm () {
+      return this.$slots.form
+    },
+    hasQuery () {
+      return this.hasSimple || this.hasAdvanced || this.$slots.toggle || this.hasForm
     },
     pageCount () {
       return Math.ceil(this.totalCount / this.pageSize)
@@ -388,7 +400,8 @@ export default {
 
       this.loading = true
 
-      if (this.showDaterange) {
+      // 自定义 form 时，设置 showDaterange 无效
+      if (this.showDaterange && !this.hasForm) {
         let startTime = +moment(this.startTime).format(this.submitDateFormat)
         let endTime = +moment(this.endTime).format(this.submitDateFormat)
         currForm[keyMaps.startTime] = startTime
