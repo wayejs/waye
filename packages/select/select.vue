@@ -83,10 +83,16 @@ export default {
     currentValue (val) {
       this.$emit('selected-change', val)
       if (val) {
-        let item = this.list.find(n => n.value === val)
-        if (item) {
-          this.$emit('change', item)
+        if (this.$attrs.multiple !== void 0) {
+          this.$emit('change', val)
+        } else {
+          let item = this.list.find(n => n.value === val)
+          if (item) {
+            this.$emit('change', item)
+          }
         }
+      } else {
+        this.$emit('change', '')
       }
     },
     queryParams: {
