@@ -59,7 +59,7 @@ if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue)
 }
 export default {
-  version: '0.1.10',
+  version: '0.1.11',
   install,
   BadgeStatus,
   ButtonConfirm,
