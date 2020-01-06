@@ -26,7 +26,7 @@
           </template>
 
           <el-form-item>
-            <el-button v-if="showButtonSearch" icon="el-icon-search" native-type="submit" type="primary" @click.prevent="handleSearch">搜索</el-button>
+            <el-button v-if="showButtonSearch" icon="el-icon-search" native-type="submit" type="primary" @click.prevent="handleSearch">{{searchButtonText}}</el-button>
             <el-button v-if="hasReset" @click="handleResetForm('simpleForm')">重置</el-button>
             <el-button type="text" v-if="hasAdvanced" @click="simple = false">展开 <i class="el-icon-arrow-down"></i></el-button>
           </el-form-item>
@@ -50,7 +50,7 @@
              </el-col>
            </el-row>
            <div :class="[`${prefixCls}-search__btns`]">
-             <el-button type="primary" @click.prevent="handleSearch" native-type="submit" icon="el-icon-search">搜索</el-button>
+             <el-button type="primary" @click.prevent="handleSearch" native-type="submit" icon="el-icon-search">{{searchButtonText}}</el-button>
               <el-button @click="handleResetForm('advancedForm')">重置</el-button>
               <el-button type="text" @click="simple = true">收起 <i class="el-icon-arrow-up"></i></el-button>
            </div>
@@ -264,6 +264,11 @@ export default {
     spanMethod: Function,
 
     rowClassName: Function,
+
+    searchButtonText: {
+      type: String,
+      default: '搜索'
+    },
 
     // 搜索表单, 如果不是在 slot 创建的 el-form ,直接把要查询的字段放在 model 里即可
     model: Object
