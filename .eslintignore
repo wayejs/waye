@@ -9,3 +9,4 @@ coverage
 dist
 package.json
 yarn.lock
+packages/theme/src
